@@ -9,7 +9,7 @@ const authLogin = async (request: Request, response: Response) => {
         const authModel = new AuthModel(request);
         const requestResponse: TResponseJson = await authModel.authLogin(loginDetails);
 
-        return response.status(requestResponse.status || 200).cookie("token", requestResponse.data.token, {sameSite: "none", secure: true, maxAge: 3600000  }).json(requestResponse); 
+        return response.status(requestResponse.status || 200).cookie("token", requestResponse.data.token, {sameSite: "none", secure: false, maxAge: 3600000  }).json(requestResponse); 
     } catch (error) {
         return response.status(401);
     }
