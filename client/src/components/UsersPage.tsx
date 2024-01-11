@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
 import Cookies from 'js-cookie';
 import { useCookies } from "react-cookie";
+import Spinner from './Spinner';
 
 export type UsersType = {
     _id?: string;
@@ -24,7 +25,7 @@ export type UsersType = {
 }
 
 const UsersPage = () => {
-    const { setIsLoading, user, setUser } = useUser();
+    const { setIsLoading, user, setUser, isLoading } = useUser();
     const [users, setUsers] = useState<UsersType[]>([]);
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [newUser, setNewUser] = useState<any>(undefined);
@@ -42,14 +43,17 @@ const UsersPage = () => {
                 if (request.ok) {
                     const response = await request.json();
                     const countUsers = response.data.filter((u: UsersType) => u.userId !== user.userId).map((u: UsersType, index: number) => ({ id: index + 1, ...u }))
-                    setUsers(countUsers);
+
+                    setTimeout(() => {
+                        setUsers(countUsers);
+                    }, 2000)
                 }
             } catch (error) {
                 console.log(error)
             } finally {
                 setTimeout(() => {
                     setIsLoading(false)
-                }, 2000)
+                }, 3000)
             }
         }
 
@@ -57,7 +61,6 @@ const UsersPage = () => {
     }, [])
 
     useEffect(() => {
-        console.log(Cookies.get(), 22)
         if (user.isLoggedIn) {
             const ws = new WebSocket(import.meta.env.VITE_WEB_SOCKET_URL);
             setWs(ws);
@@ -156,7 +159,9 @@ const UsersPage = () => {
                     <UpdateUserDialog websocket={ws} />
                 </div>
                 <div className="space-y-4">
-                    <CustomTable users={users} websocket={ws} />
+                    {
+                        isLoading ? <Spinner /> : <CustomTable users={users} websocket={ws} />
+                    }
                 </div>
             </div>
         </div>

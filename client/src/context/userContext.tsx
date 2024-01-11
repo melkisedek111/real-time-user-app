@@ -86,7 +86,7 @@ export const UserProvider: React.FC<UserProviderPropsType> = ({ children }) => {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false)
-                }, 2000)
+                }, 3000)
             }
         }
 
