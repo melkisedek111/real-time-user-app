@@ -8,7 +8,6 @@ import { Button } from './ui/button';
 import { checkIfTokenExpired } from '@/utils/auth.util';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
-import Cookies from 'js-cookie';
 import { useCookies } from "react-cookie";
 import Spinner from './Spinner';
 
