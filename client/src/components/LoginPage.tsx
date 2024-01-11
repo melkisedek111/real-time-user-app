@@ -60,8 +60,7 @@ const LoginPage = () => {
             
             const response = await request.json();
             if(request.ok) {
-                const token = Cookies.get("token");
-                console.log({token}, 3030)
+                Cookies.set("token", response.data.token);
                 setUser({...response.data.user, isLoggedIn: true});
                 setLoginValues({username: {...loginValues.username, value: ""}, password: {...loginValues.password, value: ""},})
                 navigate('/dashboard');
