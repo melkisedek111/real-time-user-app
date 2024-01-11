@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     CaretSortIcon,
     ChevronDownIcon,
-    DotsHorizontalIcon,
     Pencil2Icon,
     TrashIcon,
 } from "@radix-ui/react-icons"
@@ -24,9 +23,6 @@ import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -47,8 +43,8 @@ import { toast } from './ui/use-toast'
 
 
 
-const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSocket | null}) => {
-    const {selectedUser, setSelectedUser, setUsers, setUser} = useUser();
+const CustomTable = ({ users, websocket }: { users: UsersType[], websocket: WebSocket | null }) => {
+    const { setSelectedUser, setUsers, setUser } = useUser();
     const navigate = useNavigate();
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -58,10 +54,10 @@ const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSock
         React.useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = React.useState({})
     const data = users;
-    
+
     const handleUpdateUser = async (id: string | undefined) => {
         try {
-            if(id) {
+            if (id) {
                 const isTokenExpired = checkIfTokenExpired();
                 if (isTokenExpired) {
                     setUser({
@@ -75,7 +71,7 @@ const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSock
                     setUsers([]);
                     navigate("/login");
                 } else {
-                    const request = await fetchApi<{userId: string | undefined}>("/user/getUser", "POST", { userId: id });
+                    const request = await fetchApi<{ userId: string | undefined }>("/user/getUser", "POST", { userId: id });
                     const response = await request.json();
                     if (request.ok) {
                         setSelectedUser(response.data);
@@ -89,7 +85,7 @@ const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSock
 
     const handleDeleteUser = async (id: string | undefined) => {
         try {
-            if(id) {
+            if (id) {
                 const isTokenExpired = checkIfTokenExpired();
                 if (isTokenExpired) {
                     setUser({
@@ -103,7 +99,7 @@ const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSock
                     setUsers([]);
                     navigate("/login");
                 } else {
-                    const request = await fetchApi<{userId: string | undefined}>("/user/deleteUser", "POST", { userId: id });
+                    const request = await fetchApi<{ userId: string | undefined }>("/user/deleteUser", "POST", { userId: id });
                     const response = await request.json();
                     if (request.ok) {
                         if (websocket) {
@@ -183,7 +179,7 @@ const CustomTable = ({users, websocket}: {users: UsersType[], websocket: WebSock
             header: () => <div className="text-center">Actions</div>,
             cell: ({ row }) => {
                 const id = row.original?.userId;
-                
+
                 return (
                     <div className="flex gap-1 justify-center">
                         <Button size="sm" onClick={() => handleUpdateUser(id)} ><Pencil2Icon /></Button>

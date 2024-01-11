@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomTable from './CustomTable'
 import { fetchApi } from '@/utils/fetch.util';
 import { useUser } from '@/context/userContext';

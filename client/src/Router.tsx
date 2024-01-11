@@ -1,36 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import React from 'react';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import UsersPage from './components/UsersPage';
 import { useUser } from './context/userContext';
-
-
-type TGuestRouteProps = {
-    children: React.ReactNode;
-}
-
-type TPrivateRouteProps = {
-    element: React.ReactNode;
-    path: string;
-}
-
-
-interface PrivateRouteProps {
-    path?: string;
-    element?: React.ReactNode;
-}
-
-
-
-// const PrivateRoute: React.FC<TPrivateRouteProps> = ({ path, element }) => {
-//     const { user } = useUser();
-//     if (user.isLoggedIn) {
-//       return <Route path={path} element={element} />;
-//     } else {
-//       return <Navigate to="/login" replace />;
-//     }
-//   };
-
 
 const PrivateRoute: React.FC<{ element: React.ReactNode }> = ({
     element,
