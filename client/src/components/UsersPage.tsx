@@ -58,9 +58,9 @@ const UsersPage = () => {
         if (user.isLoggedIn) {
             const ws = new WebSocket(import.meta.env.VITE_WEB_SOCKET_URL);
             setWs(ws);
-            const isTokenExpired = checkIfTokenExpired();
 
             ws.addEventListener("message", (event) => {
+                const isTokenExpired = checkIfTokenExpired();
                 if (isTokenExpired) {
                     setUser({
                         userId: "",
