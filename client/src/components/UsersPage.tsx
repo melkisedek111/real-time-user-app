@@ -8,7 +8,6 @@ import { Button } from './ui/button';
 import { checkIfTokenExpired } from '@/utils/auth.util';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
-import Spinner from './Spinner';
 
 export type UsersType = {
     _id?: string;
@@ -23,7 +22,7 @@ export type UsersType = {
 }
 
 const UsersPage = () => {
-    const { setIsLoading, user, setUser, isLoading } = useUser();
+    const { setIsLoading, user, setUser } = useUser();
     const [users, setUsers] = useState<UsersType[]>([]);
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [newUser, setNewUser] = useState<any>(undefined);
