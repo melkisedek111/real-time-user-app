@@ -8,7 +8,6 @@ import { Button } from './ui/button';
 import { checkIfTokenExpired } from '@/utils/auth.util';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
-import { useCookies } from "react-cookie";
 import Spinner from './Spinner';
 
 export type UsersType = {
