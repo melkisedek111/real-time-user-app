@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { checkIfTokenExpired } from '@/utils/auth.util';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
+import Cookies from 'js-cookie';
 
 export type UsersType = {
     _id?: string;
@@ -55,6 +56,8 @@ const UsersPage = () => {
     }, [])
 
     useEffect(() => {
+        const token = Cookies.get("token");
+        console.log({token}, 22)
         if (user.isLoggedIn) {
             const ws = new WebSocket(import.meta.env.VITE_WEB_SOCKET_URL);
             setWs(ws);
