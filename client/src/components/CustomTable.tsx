@@ -59,7 +59,6 @@ const CustomTable = ({ users, websocket }: { users: UsersType[], websocket: WebS
         try {
             if (id) {
                 const isTokenExpired = checkIfTokenExpired();
-                console.log({isTokenExpired})
                 if (isTokenExpired) {
                     setUser({
                         userId: "",
