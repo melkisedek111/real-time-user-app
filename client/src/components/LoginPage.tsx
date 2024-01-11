@@ -16,6 +16,7 @@ import { fetchApi } from '@/utils/fetch.util'
 import { useUser } from '@/context/userContext'
 import { useNavigate } from 'react-router-dom'
 import { toast } from './ui/use-toast'
+import Cookies from "js-cookie";
 
 export type ValueFormType<T = string> = {
     value: T;
@@ -59,6 +60,8 @@ const LoginPage = () => {
             
             const response = await request.json();
             if(request.ok) {
+                const token = Cookies.get("token");
+                console.log({token}, 3030)
                 setUser({...response.data.user, isLoggedIn: true});
                 setLoginValues({username: {...loginValues.username, value: ""}, password: {...loginValues.password, value: ""},})
                 navigate('/dashboard');
