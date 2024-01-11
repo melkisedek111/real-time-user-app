@@ -30,7 +30,6 @@ const UsersPage = () => {
     const [newUser, setNewUser] = useState<any>(undefined);
     const [updatedUser, setUpdateUser] = useState<any>(undefined);
     const [deleteUser, setDeleteUser] = useState<"" | undefined>(undefined);
-    const [cookies] = useCookies(["token"]);
     const navigate = useNavigate();
 
     useEffect(() => {
