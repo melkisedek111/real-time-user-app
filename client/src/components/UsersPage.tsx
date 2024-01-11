@@ -135,6 +135,7 @@ const UsersPage = () => {
                                 isLoggedIn: false,
                             });
                             setUsers([]);
+                            setIsLoading(false);
                             navigate("/login");
                         }
                     }}>
