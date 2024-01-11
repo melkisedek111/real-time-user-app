@@ -156,9 +156,7 @@ const UsersPage = () => {
                     <UpdateUserDialog websocket={ws} />
                 </div>
                 <div className="space-y-4">
-                    {
-                        isLoading ? <Spinner /> : <CustomTable users={users} websocket={ws} />
-                    }
+                    <CustomTable users={users} websocket={ws} />
                 </div>
             </div>
         </div>
