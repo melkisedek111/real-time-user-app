@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 export const checkIfTokenExpired = (isLogout: boolean = false) => {
 	const token = Cookies.get("token");
-
+    console.log({token})
     if(isLogout) {
         Cookies.remove("token");
         return true;
