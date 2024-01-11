@@ -30,7 +30,7 @@ const NotFound = () => {
   
     // Redirect to the login page if the URL doesn't exist
     React.useEffect(() => {
-      navigate('/login');
+      navigate('/dashboard');
     }, [navigate]);
   
     return null;
