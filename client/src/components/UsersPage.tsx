@@ -56,7 +56,6 @@ const UsersPage = () => {
     }, [])
 
     useEffect(() => {
-        const token = Cookies.get("token");
         console.log(Cookies.get(), 22)
         if (user.isLoggedIn) {
             const ws = new WebSocket(import.meta.env.VITE_WEB_SOCKET_URL);
