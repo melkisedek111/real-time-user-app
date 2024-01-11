@@ -9,6 +9,7 @@ import { checkIfTokenExpired } from '@/utils/auth.util';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserDialog from './UpdateUserDialog';
 import Cookies from 'js-cookie';
+import { useCookies } from "react-cookie";
 
 export type UsersType = {
     _id?: string;
@@ -29,7 +30,7 @@ const UsersPage = () => {
     const [newUser, setNewUser] = useState<any>(undefined);
     const [updatedUser, setUpdateUser] = useState<any>(undefined);
     const [deleteUser, setDeleteUser] = useState<"" | undefined>(undefined);
-
+    const [cookies] = useCookies(["token"]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -118,7 +119,7 @@ const UsersPage = () => {
             setUsers(countUsers)
         }
     }, [updatedUser, deleteUser, newUser]);
-
+    console.log(cookies.token, 202020)
     return (
         <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow-md md:shadow-xl w-full container">
             <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">

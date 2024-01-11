@@ -46,7 +46,7 @@ const LoginPage = () => {
         },
     }
     const [loginValues, setLoginValues] = useState<LoginValueType>(initialLoginValues);
-    const { setIsLoading, setUser } = useUser();
+    const { setIsLoading, setUser, isLoading } = useUser();
     const navigate = useNavigate();
 
     const handleLogin = async (event: React.FormEvent) => {
