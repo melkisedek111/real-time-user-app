@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet, useNavigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import UsersPage from './components/UsersPage';
 import { useUser } from './context/userContext';
@@ -24,9 +24,19 @@ const GuestRoute: React.FC = () => {
         )
     )
 }
+
+const NotFound = () => {
+    const navigate = useNavigate();
+  
+    // Redirect to the login page if the URL doesn't exist
+    React.useEffect(() => {
+      navigate('/login');
+    }, [navigate]);
+  
+    return null;
+  };
+
 const AppRoutes = () => {
-
-
 
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -38,7 +48,7 @@ const AppRoutes = () => {
                 <Route element={<GuestRoute />}>
                     <Route path="/login" element={<LoginPage />} />
                 </Route>
-                <Route path="*" element={<div>LOGIN PAGE</div>} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </div>
     )
