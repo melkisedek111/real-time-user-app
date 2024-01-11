@@ -39,17 +39,14 @@ const UsersPage = () => {
                 if (request.ok) {
                     const response = await request.json();
                     const countUsers = response.data.filter((u: UsersType) => u.userId !== user.userId).map((u: UsersType, index: number) => ({ id: index + 1, ...u }))
-
-                    setTimeout(() => {
-                        setUsers(countUsers);
-                    }, 2000)
+                    setUsers(countUsers);
                 }
             } catch (error) {
                 console.log(error)
             } finally {
                 setTimeout(() => {
                     setIsLoading(false)
-                }, 3000)
+                }, 2000)
             }
         }
 
