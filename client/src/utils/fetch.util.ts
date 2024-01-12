@@ -14,6 +14,7 @@ export const fetchApi = <RequestBodyType>(
 		method,
 		...hasBody,
 		credentials: "include",
+		mode: "cors",
 		...props,
 	});
 };
